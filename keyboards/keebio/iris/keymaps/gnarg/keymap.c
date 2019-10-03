@@ -21,7 +21,9 @@ enum custom_keycodes {
   _AM_MAIN,
   _AM_SWCC,
   _AM_SWCL,
-  _AM_SWSC
+  _AM_SWSC,
+  _DSK_RT,
+  _DSK_LT
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -50,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     _AM_FUL, _AM_SWCC, _AM_EXP, _AM_SWSC, KC_DOWN, KC_LCBR, KC_LPRN,          KC_RPRN, KC_RCBR, KC_P1,   KC_P2,   KC_P3,   KC_MINS, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, KC_DEL,                    KC_BSPC,  _______, KC_P0
+                                    _______, _______, KC_DEL,                    _DSK_LT,  _DSK_RT, KC_P0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -62,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      RGB_MOD, KC_MPRV, KC_MNXT, KC_VOLU, KC_PGUP, KC_MINS,                            KC_EQL,  KC_HOME, _______, _______, _______, KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_MUTE, KC_MSTP, KC_MPLY, KC_VOLD, KC_PGDN, KC_UNDS, KC_LPRN,          _______, KC_PLUS, KC_END,  _AM_FUL, _AM_SHR, _AM_SWCC, _AM_MAIN,
+     KC_MUTE, KC_MSTP, KC_MPLY, KC_VOLD, KC_PGDN, KC_UNDS, KC_LPRN,          _______, KC_PLUS, KC_END,  _AM_MAIN, _AM_SHR, _AM_SWCC, _AM_TAL,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -157,6 +159,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case _AM_SWSC:
     if (record->event.pressed) {
       SEND_STRING(SS_LCTRL(SS_LSFT(SS_RALT("l"))));
+    }
+    break;
+  case _DSK_RT:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTRL(SS_LGUI(SS_TAP(X_RIGHT))));
+    }
+    break;
+  case _DSK_LT:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTRL(SS_LGUI(SS_TAP(X_LEFT))));
     }
     break;
   }
