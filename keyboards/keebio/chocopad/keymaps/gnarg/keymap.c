@@ -1,72 +1,111 @@
 #include QMK_KEYBOARD_H
 
-#define _BASE 0
+extern keymap_config_t keymap_config;
+
+#define _EVE 0
 #define _FN1 1
 #define _FN2 2
 
 enum custom_keycodes {
-  _AM_FUL = SAFE_RANGE,
-  _AM_TAL,
-  _AM_EVA,
-  _AM_SHR,
-  _AM_EXP,
-  _AM_MAIN,
-  _AM_SWCC,
-  _AM_SWCL,
-  _AM_SWSC,
-  _AM_BSP
+  EVE = SAFE_RANGE,
+  _M_1,
+  _M_2,
+  _M_3,
+  _M_4,
+  _L_1,
+  _L_2,
+  _L_3,
+  _L_4
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
-  case _AM_FUL:
+  case _M_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT("d")));
+      // SEND_STRING(SS_LALT(SS_TAP(X_F1)));
+      register_code(KC_LALT);
+      _delay_ms(100);
+      register_code(KC_F1);
+    } else {
+      unregister_code(KC_F1);
+      unregister_code(KC_LALT);
     }
     break;
-  case _AM_TAL:
+  case _M_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT("a")));
+      // SEND_STRING(SS_LALT(SS_TAP(X_F2)));
+      register_code(KC_LALT);
+      _delay_ms(100);
+      register_code(KC_F2);
+    } else {
+      unregister_code(KC_F2);
+      unregister_code(KC_LALT);
     }
     break;
-  case _AM_EVA:
+  case _M_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT("z")));
+      // SEND_STRING(SS_LALT(SS_TAP(X_F3)));
+      register_code(KC_LALT);
+      _delay_ms(100);
+      register_code(KC_F3);
+    } else {
+      unregister_code(KC_F3);
+      unregister_code(KC_LALT);
     }
     break;
-  case _AM_SHR:
+  case _M_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT("h")));
+      // SEND_STRING(SS_LALT(SS_TAP(X_F4)));
+      register_code(KC_LALT);
+      _delay_ms(100);
+      register_code(KC_F4);
+    } else {
+      unregister_code(KC_F4);
+      unregister_code(KC_LALT);
     }
     break;
-  case _AM_EXP:
+  case _L_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT("l")));
+      // SEND_STRING(SS_LCTRL(SS_TAP(X_F1)));
+      register_code(KC_LCTRL);
+      _delay_ms(100);
+      register_code(KC_F1);
+    } else {
+      unregister_code(KC_F1);
+      unregister_code(KC_LCTRL);
     }
     break;
-  case _AM_MAIN:
+  case _L_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_RALT(SS_TAP(X_ENTER))));
+      // SEND_STRING(SS_LCTRL(SS_TAP(X_F2)));
+      register_code(KC_LCTRL);
+      _delay_ms(100);
+      register_code(KC_F2);
+    } else {
+      unregister_code(KC_F2);
+      unregister_code(KC_LCTRL);
     }
     break;
-  case _AM_SWCC:
+  case _L_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_LCTRL(SS_LSFT(SS_RALT("j"))));
+      // SEND_STRING(SS_LCTRL(SS_TAP(X_F3)));
+      register_code(KC_LCTRL);
+      _delay_ms(100);
+      register_code(KC_F3);
+    } else {
+      unregister_code(KC_F3);
+      unregister_code(KC_LCTRL);
     }
     break;
-  case _AM_SWCL:
+  case _L_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_LCTRL(SS_LSFT(SS_RALT("k"))));
-    }
-    break;
-  case _AM_SWSC:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LCTRL(SS_LSFT(SS_RALT("l"))));
-    }
-    break;
-  case _AM_BSP:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LCTRL(SS_LSFT(SS_RALT("g"))));
+      // SEND_STRING(SS_LCTRL(SS_TAP(X_F4)));
+      register_code(KC_LCTRL);
+      _delay_ms(100);
+      register_code(KC_F4);
+    } else {
+      unregister_code(KC_F4);
+      unregister_code(KC_LCTRL);
     }
     break;
   }
@@ -75,23 +114,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_BASE] = LAYOUT_ortho_4x4(
-                             KC_MPLY,  KC_MNXT,  KC_VOLU,  KC_VOLD, \
-                             _AM_FUL,  _AM_TAL,  _AM_BSP,  _AM_EVA, \
-                             MO(_FN2), _AM_SWCL, _AM_SHR,  _AM_SWSC, \
-                             MO(_FN1), _AM_SWCC, _AM_EXP,  _AM_MAIN  \
-                             ),
-  [_FN1] = LAYOUT_ortho_4x4(
-                             KC_PGUP,  KC_HOME,  KC_UP,    KC_END , \
-                             KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RGHT, \
-                             _______,  KC_VOLU,  KC_MPLY,  KC_MPRV, \
-                             _______,  KC_VOLD,  KC_MUTE,  KC_MNXT  \
-                             ),
-  [_FN2] = LAYOUT_ortho_4x4(
-                            KC_ESC,   KC_P7,    KC_P8,    KC_P9,  \
-                            KC_TAB,   KC_P4,    KC_P5,    KC_P6,  \
-                            KC_ENT,   KC_P1,    KC_P2,    KC_P3,  \
-                            _______,  KC_P0,    KC_P0,    KC_DOT  \
+  [_EVE] = LAYOUT_ortho_4x4(
+                            KC_F1,   KC_F2,   KC_F3,   KC_F4, \
+                            _M_1,    _M_2,    _M_3,    _M_4, \
+                            _L_1,    _L_2,    _L_3,    _L_4, \
+                            _______, _______, _______, KC_LSFT \
   )
 
 };
