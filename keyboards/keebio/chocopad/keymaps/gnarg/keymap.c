@@ -22,90 +22,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
   case _M_1:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LALT(SS_TAP(X_F1)));
-      register_code(KC_LALT);
-      _delay_ms(100);
-      register_code(KC_F1);
+      register_code16(A(KC_F1));
     } else {
-      unregister_code(KC_F1);
-      unregister_code(KC_LALT);
+      unregister_code16(A(KC_F1));
     }
     break;
   case _M_2:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LALT(SS_TAP(X_F2)));
-      register_code(KC_LALT);
-      _delay_ms(100);
-      register_code(KC_F2);
+      register_code16(A(KC_F2));
     } else {
-      unregister_code(KC_F2);
-      unregister_code(KC_LALT);
+      unregister_code16(A(KC_F2));
     }
     break;
   case _M_3:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LALT(SS_TAP(X_F3)));
-      register_code(KC_LALT);
-      _delay_ms(100);
-      register_code(KC_F3);
+      register_code16(A(KC_F3));
     } else {
-      unregister_code(KC_F3);
-      unregister_code(KC_LALT);
+      unregister_code16(A(KC_F3));
     }
     break;
   case _M_4:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LALT(SS_TAP(X_F4)));
-      register_code(KC_LALT);
-      _delay_ms(100);
-      register_code(KC_F4);
+      register_code16(A(KC_F4));
     } else {
-      unregister_code(KC_F4);
-      unregister_code(KC_LALT);
+      unregister_code16(A(KC_F4));
     }
     break;
   case _L_1:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LCTRL(SS_TAP(X_F1)));
-      register_code(KC_LCTRL);
-      _delay_ms(100);
-      register_code(KC_F1);
+      register_code16(C(KC_F1));
     } else {
-      unregister_code(KC_F1);
-      unregister_code(KC_LCTRL);
+      unregister_code16(C(KC_F1));
     }
     break;
   case _L_2:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LCTRL(SS_TAP(X_F2)));
-      register_code(KC_LCTRL);
-      _delay_ms(100);
-      register_code(KC_F2);
+      register_code16(C(KC_F2));
     } else {
-      unregister_code(KC_F2);
-      unregister_code(KC_LCTRL);
+      unregister_code16(C(KC_F2));
     }
     break;
   case _L_3:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LCTRL(SS_TAP(X_F3)));
-      register_code(KC_LCTRL);
-      _delay_ms(100);
-      register_code(KC_F3);
+      register_code16(C(KC_F3));
     } else {
-      unregister_code(KC_F3);
-      unregister_code(KC_LCTRL);
+      unregister_code16(C(KC_F3));
     }
     break;
   case _L_4:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LCTRL(SS_TAP(X_F4)));
-      register_code(KC_LCTRL);
-      _delay_ms(100);
-      register_code(KC_F4);
+      register_code16(C(KC_F4));
     } else {
-      unregister_code(KC_F4);
-      unregister_code(KC_LCTRL);
+      unregister_code16(C(KC_F4));
     }
     break;
   }
